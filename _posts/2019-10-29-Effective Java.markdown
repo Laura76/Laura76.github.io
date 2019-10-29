@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Blog Title"
+title:  "***Effective Java*** Notes"
 date:   2019-10-29
 categories: Java
 ---
