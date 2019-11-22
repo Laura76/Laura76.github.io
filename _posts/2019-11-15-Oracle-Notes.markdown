@@ -57,8 +57,8 @@ FFLT_Y number(20,10)
 );
 ```
 //导入txt数据的步骤--速度贼慢  
-1.右键数据表，打开导入向导  
-2.一步步按照顺序执行（注意点是要手动选择目标字段）  
+右键数据表，打开导入向导  
+一步步按照顺序执行（注意点是要手动选择目标字段）  
 //创建视图1  
 ```
 create or replace view vw_taxi_gps1
@@ -73,7 +73,6 @@ left join
 (select FSTR_ID,count(FSTR_ID)fint_gps_count
 from tbl_taxi_gps
 group by FSTR_ID) b
-
 on a.FSTR_ID=b.FSTR_ID
 )
 with read only;
