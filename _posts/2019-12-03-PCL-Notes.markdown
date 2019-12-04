@@ -1,0 +1,16 @@
+---
+layout: post
+title:  "PCL Notes"
+date:   2019-12-03
+categories: pcl
+
+---
+
+> PCL的学习记录
+
+---
+- 背景介绍
+PCL是是开源的C++书写的点云库，该库可以实现我们所需要的**离散点的曲面重建**。  
+- 结构
+PCL是一个模块化的C++的模板库，基于很多的第三方库。PCL的模块包含了filter点云过滤、surface表面重建等。第三方库包含了Boost、FLANN（fast library for approximate nearest neighbours）、Qhull等。  
+从算法角度来看，PCL是包含了众多操作点云数据的三维处理算法。
