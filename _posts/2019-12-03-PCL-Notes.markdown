@@ -14,3 +14,31 @@ PCL是是开源的C++书写的点云库，该库可以实现我们所需要的**
 - 结构
 PCL是一个模块化的C++的模板库，基于很多的第三方库。PCL的模块包含了filter点云过滤、surface表面重建等。第三方库包含了Boost、FLANN（fast library for approximate nearest neighbours）、Qhull等。  
 从算法角度来看，PCL是包含了众多操作点云数据的三维处理算法。
+- PCD文件的格式
+PCD是point cloud data的意思，是存储点云数据的一种文件的格式。格式如下：  
+```
+#pcd的版本
+VERSION 0.7
+#一个点的数据格式或者维度如何表示,下面就表示每一个点有x,y,z三个维度的坐标
+FIELDS x y z
+#每个维度（坐标）的数据的长度,下面就表示x,y,z坐标都占4个字节
+SIZE 4 4 4
+#每个维度（坐标）的数据类型,下面表示坐标的数据类型是浮点型
+TYPE F F F
+#每个维度具有的元素数量，下面表示x坐标含有的数据就是1个，如果不写这个的话默认是1
+COUNT 1 1 1
+#width通常表示为点的个数有多少个，下面表示有35947个点
+WIDTH 35947
+#height通常都是1，表示是无组织的数据集.一般width*height就可以获得该文件中有多少个点
+HEIGHT 1
+#viewpoint我也搞不懂是什么，暂时默认值是0001000，前三个是平移tx,ty,tz后四个是四元数qw,qx,qy,qz别问我是什么
+VIEWPOINT 0 0 0 1 0 0 0
+#点的总个数，有点多余，上面都已经可以求出来了
+POINTS 35947
+#下面那一大堆点云数据的存储方式，现在支持ASCII和binary
+DATA ascii
+...
+接下来就是每一行一个点的x,y,z坐标，如果以ascii的方式的话
+```
+- kdTree  
+一种数据结构，便于三维空间内进行范围搜索和最近邻搜索

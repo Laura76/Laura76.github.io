@@ -1,0 +1,69 @@
+---
+layout: post
+title:  "IGL Notes"
+date:   2019-12-06
+categories: libigl
+
+---
+
+> IGL的学习记录
+
+---
+- 如果有一天我死了，死因就是igl。
+- 安装过程  
+git clone https://github.com/libigl/libigl.git 这是要下载头文件，就是这个文件夹里面的include文件夹。哦忘了说了，IGL本质上就是处理三维点的C++头文件库，直接在cpp文件中使用include调用就行了，就像Java里面的各种import的包一样。  
+官网的教程中会说让你下一个example的示例来便于学习，不要下没啥用，不如直接看后面的教程。别问我怎么知道的。感觉自己烂的要死的C++真是难以相信我学过它，所以所有的学习最关键的还是要理解。
+- eigen
+由于Windows中没有内置的eigen,所以不选择使用教程中说的cmake来执行代码。直接在VS2015中进行就可以了。  
+安装过程：从官网下载eigen，解压之后随便你放哪里。  
+在你的VS项目中点击项目属性，VC++目录里的包含目录里面添加上igl和eigen的文件夹位置即路径。例如D:\三维重塑\LIBIGL-Study\Eigen3，D:\三维重塑\LIBIGL-Study\libigl\include。
+- 示例的cpp代码
+```
+#include <igl/cotmatrix.h>
+#include <Eigen/Dense>
+#include <Eigen/Sparse>
+#include <iostream>
+int main()
+{
+	Eigen::MatrixXd V(4, 2);
+	V << 0, 0,
+		1, 0,
+		1, 1,
+		0, 1;
+	Eigen::MatrixXi F(2, 3);
+	F << 0, 1, 2,
+		0, 2, 3;
+	Eigen::SparseMatrix<double> L;
+	igl::cotmatrix(V, F, L);
+	std::cout << "Hello, mesh: " << std::endl << L*V << std::endl;
+	return 0;
+}
+```
+> 后续的众多编码中肯定会有各种各样的问题，慢慢受着吧
+
+- 啊啊啊
+搞了差不多两三天才发现好像没有表面重建的示例，我想死
+
+- tutorial_shared_path.h  
+这个头文件的引用需要修改，具体操作如下：  
+```
+从#include "tutorial_shared_path.h"
+变为#include <igl/tutorial_shared_path.h>
+```
+原因是我没有在项目路径下直接导入这个头文件，我把它放在了igl的头文件一起了。
+- 文件路径使用的规范如下  
+./bed/train/bed_0001.off
+- 一直报错：未识别的glfwinit等变量  
+原因是glfw的lib库和vs版本不匹配，应到官网上下对应的版本。不要下官网上需要自己编译的版本，我被这个坑了一个下午想哭。
+- 大致的函数即功能  
+所有的示例代码都在tutorial文件夹中。  
+101：读取off文件，输出obj文件。没啥大用处。  
+102：使用OpenGL将off文件的物体可视化即会画出来  
+103：注册键盘鼠标事件（待以后需要此功能时再深入学习）  
+104:给每一个点添加上颜色  
+105：绘画点线和一些显示的信息-该例中获取了物体的边界点--贼烦需要一个破imgui的库不想配了  
+106：
+
+- 核心的数据结构  
+V:顶点的数据结构是矩阵的方式，矩阵的每一行都是该顶点的三个方向的坐标，有多少点就有多少行  
+F:面的数据结构也是矩阵。矩阵的每一行就是该三角面的三个顶点的索引，有多少行就有多少面。  
