@@ -39,7 +39,9 @@ extern来使用其他文件中定义的函数或者变量，例如extern void wr
 - 头文件cmath  
 里面有很多的数学函数，需要的时候请查询这里。
 - 数组的声明  
-double balance[10];
+double balance[10];  
+初始化是：string a[5] = { "foo", "", "", "", "" };  
+获取数组长度：sizeof(array) / sizeof(array[0])
 - 字符串  
 有两种方式。第一种方式是C语言中的字符数组的方式，注意，字符数组的最后以为是\0结束符。  
 第二种方式是C++里面的string对象，和Java里面的有一点像。
@@ -48,3 +50,33 @@ double balance[10];
 ip=&a;注意这个指针声明前面的int只是表示这个指针指向的数字是一个int值，因为不同数据类型的指针存储的都是一样格式的内存地址。
 - 引用  
 例如int&  r=i;感觉和指针差不多，区别在于三点。第一点是引用只能初始化一次，我指向一个对象之后就不能再指向其他的对象。第二点是引用在创建的时候必须初始化。第三点就是引用肯定不是空的，这一条可由第二条获得。
+```
+#include <iostream>
+using namespace std;
+// main() 是程序开始执行的地方
+int main() {
+   cout << "Hello World";
+   // 输出 Hello World
+   return 0;
+}
+```
+- C++定义方法
+```
+// This program has two functions: main and displayMessage.
+#include <iostream>
+using namespace std;
+// Function prototype
+void displayMessage();
+//main函数
+int main()
+{
+    cout << "Hello from main.\n";
+    displayMessage(); // Call.displayMessage
+    cout << "Now we are back in the main function again. \n";
+    return 0;
+}
+void displayMessage()
+{
+    cout << "Hello from the displayMessage function.\n";
+}
+```
