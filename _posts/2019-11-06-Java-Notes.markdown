@@ -38,6 +38,7 @@ categories: Java
   然后这边还有一点需要明白，实例初始化块的代码在编译器编译过后，是放在类的构造函数里面的，并且是在原构造函数代码的前面。
 ```
   **实例初始化块**的解释：<u>https://www.cnblogs.com/jankuo/archive/2018/10/14/9787600.html</u>
+
 - 二分法中求mid的防止溢出的操作为
 mid=start+((end-start)>>1);注意后面要加上一个括号，因为优先级比较低的问题。
 - hashmap怎么判断某个key是否存在？
@@ -252,7 +253,15 @@ boolean start= str.startsWith(“file_”);
 ```
 可以用String类的valueOfString sR=String.valueOf(longVal)可以用Long类的toStringString sR=Long.toString(longVal)
 ```
-```
 - java停止控制台输入  
+```
 输入eof即可
+```
+- java局部变量没有赋值，能使用吗  
+```
+不能。但是Java的成员变量没有赋值可以使用，在类的对象初始化的时候，会被默认赋值。
+```
+
+
+
   
